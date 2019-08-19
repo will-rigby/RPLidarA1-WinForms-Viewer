@@ -1,0 +1,14 @@
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\bin\Debug\LIDARCOntroller.exe.config
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\bin\Debug\LIDARCOntroller.exe
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\bin\Debug\LIDARCOntroller.pdb
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.csprojAssemblyReference.cache
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.Form1.resources
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.Properties.Resources.resources
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.csproj.GenerateResource.cache
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.csproj.CoreCompileInputs.cache
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.exe
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.pdb
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\bin\Debug\LIDARCOntroller.exe.manifest
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\bin\Debug\LIDARCOntroller.application
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.exe.manifest
+C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.application
