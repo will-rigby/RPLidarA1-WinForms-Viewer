@@ -23,6 +23,7 @@ namespace LIDARCOntroller
         long lastScan = 0;
         Boolean dataResponseState = false;
         int size = 8000;
+        Boolean drawLine = false;
         int count = 0;
         List<Double> pointX = new List<Double>();
         List<Double> pointY = new List<Double>();
@@ -30,31 +31,50 @@ namespace LIDARCOntroller
         List<Double> rayY = new List<Double>();
         int renderCount = 0;
         Boolean renderStatus = false;
+        System.Drawing.Graphics formGraphics;
+
         public Form1()
         {
             InitializeComponent();
+
             serialPortBox.DataSource = SerialPort.GetPortNames();
             scanning = false;
             serialConnected = false;
-            map.ChartAreas[0].AxisX.Minimum = -size;
-            map.ChartAreas[0].AxisX.Maximum = size;
-            map.ChartAreas[0].AxisY.Minimum = -size;
-            map.ChartAreas[0].AxisY.Maximum = size;
-            map.ChartAreas[0].AxisX.MajorGrid.Interval = size / 4;
-            map.ChartAreas[0].AxisY.MajorGrid.Interval = size / 4;
-            map.ChartAreas[0].AxisX.MajorGrid.Interval = 8000;
-            map.ChartAreas[0].AxisY.MajorGrid.Interval = 8000;
-            /*for (int distance = 0; distance < 16000; distance += 1000)
-            {
-                for(int angle = 0; angle < 361; angle++)
-                {
-                    double lx = (Convert.ToDouble(distance) * Math.Cos(ConvertToRadians(Convert.ToDouble(angle))));
-                    double ly = Convert.ToDouble(distance) * Math.Sin(ConvertToRadians(Convert.ToDouble(angle)));
-                    map.Series[2].Points.AddXY(lx, ly);
-                }
-            }*/
-            
 
+
+
+
+        }
+
+        private void Draw_Background()
+        {
+
+            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+            System.Drawing.Graphics formGraphics;
+            formGraphics = this.CreateGraphics();
+            formGraphics.FillRectangle(myBrush, new Rectangle(40, 20, 700, 700));
+            myBrush.Dispose();
+            formGraphics.Dispose();
+
+        }
+
+        private void DrawPoint(double x, double y)
+        {
+            /* Convert to grid coordinates */
+            int newX = -((Convert.ToInt32(x) * 350) / size) + 370;
+            int newY = ((Convert.ToInt32(y) * 350) / size) + 370;
+            formGraphics = this.CreateGraphics();
+            Pen pen = new Pen(Color.LimeGreen);
+            formGraphics.DrawLine(pen, newX-1, newY-1, newX, newY);
+            if (drawLine)
+            {
+                Pen pen2 = new Pen(Color.Green);
+                formGraphics.DrawLine(pen, 370, 370, newX, newY);
+                pen2.Dispose();
+            }
+            
+            formGraphics.Dispose();
+            pen.Dispose();
         }
 
 
@@ -262,18 +282,14 @@ namespace LIDARCOntroller
             if ((dataPacket[0] & 1) == 1)
             {
                 
-                    if (clearEachScan.Checked)
-                    {
-
-                        this.Invoke(new MethodInvoker(delegate () { map.Series[0].Points.Clear(); }));
-                        this.Invoke(new MethodInvoker(delegate () { map.Series[1].Points.Clear(); }));
-                    }
+                   
 
 
 
 
-                if (renderCount == 20)
+                if (renderCount == 5)
                 {
+                    /*
                     Thread.Sleep(3);
                     Byte[] stopPacket = SmallRequestPacket(0x25);
                     serialPort.Write(stopPacket, 0, stopPacket.Length);
@@ -285,8 +301,14 @@ namespace LIDARCOntroller
                     Byte[] packet = SmallRequestPacket(0x20);
                     serialPort.Write(packet, 0, packet.Length);
                     count = 0;
-                    serialPort.DiscardInBuffer();
+                    while (serialPort.BytesToRead > 0) serialPort.ReadExisting();
+                    dataResponseState = false;
+                    */
                     renderCount = 0;
+                    formGraphics = this.CreateGraphics();
+                    formGraphics.Clear(Color.White);
+                    formGraphics.Dispose();
+                    Draw_Background();
                 }
                 else
                 {
@@ -305,29 +327,12 @@ namespace LIDARCOntroller
                 double x = -1 * (Convert.ToDouble(distance) * Math.Cos(ConvertToRadians(Convert.ToDouble(angle))));
                 double y = Convert.ToDouble(distance) * Math.Sin(ConvertToRadians(Convert.ToDouble(angle)));
 
-
-
-                this.Invoke(new MethodInvoker(delegate ()
-                {
-                    map.Series[0].Points.AddXY(x, y);
-                }));
+                DrawPoint(x, y);
+                //this.Invoke(new MethodInvoker(delegate () { DrawPoint(x, y); }));
 
 
 
 
-                if (rayTraceCheckBox.Checked)
-                {
-                    if (!rayTraceKeepCheckBox.Checked)
-                    {
-
-                        this.Invoke(new MethodInvoker(delegate () { map.Series[1].Points.Clear(); }));
-                    }
-
-                    this.Invoke(new MethodInvoker(delegate () { map.Series[1].Points.AddXY(0, 0); }));
-                    this.Invoke(new MethodInvoker(delegate () { map.Series[1].Points.AddXY(x, y); }));
-                }
-            
-            
         }
 
         private void ProcessCommand(int command, int payloadLength, int[] payload, byte checkSum)
@@ -425,6 +430,7 @@ namespace LIDARCOntroller
         {
             var ports = SerialPort.GetPortNames();
             serialPortBox.DataSource = ports;
+            Draw_Background();
         }
 
         private void StatusButton_Click(object sender, EventArgs e)
@@ -434,26 +440,21 @@ namespace LIDARCOntroller
             serialPort.Write(packet, 0, packet.Length);
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void setScaleButton_Click(object sender, EventArgs e)
         {
-            this.Invoke(new MethodInvoker(delegate () { map.Series[0].Points.Clear(); }));
-            this.Invoke(new MethodInvoker(delegate () { map.Series[1].Points.Clear(); }));
+            size = Convert.ToInt32(scaleUpDown.Value);
         }
 
-        private void SetScaleButton_Click(object sender, EventArgs e)
+        
+
+        private void scaleUpDown_ValueChanged(object sender, EventArgs e)
         {
-            int scale = Convert.ToInt32(scaleUpDown.Value);
-            map.ChartAreas[0].AxisX.Minimum = -scale;
-            map.ChartAreas[0].AxisX.Maximum = scale;
-            map.ChartAreas[0].AxisY.Minimum = -scale;
-            map.ChartAreas[0].AxisY.Maximum = scale;
-            map.ChartAreas[0].AxisX.MajorGrid.Interval = 1000;
-            map.ChartAreas[0].AxisY.MajorGrid.Interval = 1000;
+
         }
 
-        private void RayTraceCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void rayTraceCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            map.Series[1].Points.Clear();
+            drawLine = rayTraceCheckBox.Checked;
         }
     }
 }

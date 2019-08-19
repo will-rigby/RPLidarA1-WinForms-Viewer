@@ -12,3 +12,24 @@ C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\bin\Debug\LIDARCOntro
 C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\bin\Debug\LIDARCOntroller.application
 C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.exe.manifest
 C:\Users\Will\source\repos\LIDARCOntroller\LIDARCOntroller\obj\Debug\LIDARCOntroller.application
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\LIDARCOntroller.exe.config
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\LIDARCOntroller.exe.manifest
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\LIDARCOntroller.application
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\LIDARCOntroller.exe
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\LIDARCOntroller.pdb
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.csprojResolveAssemblyReference.cache
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.Form1.resources
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.Properties.Resources.resources
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.csproj.GenerateResource.Cache
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.csproj.CoreCompileInputs.cache
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.exe.manifest
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.application
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.exe
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\obj\Debug\LIDARCOntroller.pdb
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\OpenGL.Net.WinForms.dll
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\OpenGL.Net.WinForms.pdb
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\OpenGL.Net.WinForms.xml
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\SharpGL.dll
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\SharpGL.WinForms.dll
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\SharpGL.xml
+C:\Users\William Rigby\Documents\GitHub\RPLidarA1-WinForms-Viewer\LIDARCOntroller\bin\Debug\SharpGL.WinForms.xml

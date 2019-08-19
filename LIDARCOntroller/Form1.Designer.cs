@@ -28,13 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.serialPortBox = new System.Windows.Forms.ComboBox();
             this.connectButton = new System.Windows.Forms.Button();
-            this.map = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.startButton = new System.Windows.Forms.Button();
             this.scanButton = new System.Windows.Forms.Button();
             this.statusButton = new System.Windows.Forms.Button();
@@ -49,7 +44,7 @@
             this.scaleUpDown = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -76,58 +71,6 @@
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.ConnectButton_Click);
-            // 
-            // map
-            // 
-            this.map.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.None;
-            this.map.BackColor = System.Drawing.Color.Black;
-            chartArea1.AxisX.IsStartedFromZero = false;
-            chartArea1.AxisX.LabelStyle.Enabled = false;
-            chartArea1.AxisX.LineColor = System.Drawing.Color.DarkGreen;
-            chartArea1.AxisX.LineWidth = 3;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DarkGreen;
-            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.AxisX.MajorTickMark.Enabled = false;
-            chartArea1.AxisX2.LineColor = System.Drawing.Color.Lime;
-            chartArea1.AxisX2.LineWidth = 3;
-            chartArea1.AxisY.LabelStyle.Enabled = false;
-            chartArea1.AxisY.LineColor = System.Drawing.Color.DarkGreen;
-            chartArea1.AxisY.LineWidth = 3;
-            chartArea1.AxisY.MajorGrid.Interval = 0D;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGreen;
-            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.AxisY.MajorTickMark.Enabled = false;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.BorderColor = System.Drawing.Color.DarkGreen;
-            chartArea1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.BorderWidth = 3;
-            chartArea1.Name = "ChartArea1";
-            this.map.ChartAreas.Add(chartArea1);
-            this.map.Location = new System.Drawing.Point(48, 12);
-            this.map.Name = "map";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series1.MarkerColor = System.Drawing.Color.Lime;
-            series1.MarkerSize = 3;
-            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series1.Name = "lidarData";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Color = System.Drawing.Color.LightGreen;
-            series2.MarkerColor = System.Drawing.Color.Lime;
-            series2.Name = "rayTrace";
-            series3.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.DarkGreen;
-            series3.Name = "circles";
-            this.map.Series.Add(series1);
-            this.map.Series.Add(series2);
-            this.map.Series.Add(series3);
-            this.map.Size = new System.Drawing.Size(700, 700);
-            this.map.TabIndex = 2;
-            this.map.Text = "chart1";
-            this.map.Click += new System.EventHandler(this.Map_Click);
             // 
             // startButton
             // 
@@ -225,7 +168,7 @@
             this.rayTraceCheckBox.TabIndex = 13;
             this.rayTraceCheckBox.Text = "Ray Trace";
             this.rayTraceCheckBox.UseVisualStyleBackColor = true;
-            this.rayTraceCheckBox.CheckedChanged += new System.EventHandler(this.RayTraceCheckBox_CheckedChanged);
+            this.rayTraceCheckBox.CheckedChanged += new System.EventHandler(this.rayTraceCheckBox_CheckedChanged);
             // 
             // clearEachScan
             // 
@@ -245,7 +188,7 @@
             this.setScaleButton.TabIndex = 11;
             this.setScaleButton.Text = "Set";
             this.setScaleButton.UseVisualStyleBackColor = true;
-            this.setScaleButton.Click += new System.EventHandler(this.SetScaleButton_Click);
+            this.setScaleButton.Click += new System.EventHandler(this.setScaleButton_Click);
             // 
             // scaleUpDown
             // 
@@ -273,6 +216,7 @@
             0,
             0,
             0});
+            this.scaleUpDown.ValueChanged += new System.EventHandler(this.scaleUpDown_ValueChanged);
             // 
             // button1
             // 
@@ -282,7 +226,6 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Clear";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // groupBox4
             // 
@@ -302,10 +245,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 849);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.map);
             this.Name = "Form1";
             this.Text = "RP LIDAR Mapper";
-            ((System.ComponentModel.ISupportInitialize)(this.map)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -321,7 +262,6 @@
 
         private System.Windows.Forms.ComboBox serialPortBox;
         private System.Windows.Forms.Button connectButton;
-        private System.Windows.Forms.DataVisualization.Charting.Chart map;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button scanButton;
         private System.Windows.Forms.Button statusButton;
@@ -336,6 +276,7 @@
         private System.Windows.Forms.CheckBox clearEachScan;
         private System.Windows.Forms.CheckBox rayTraceCheckBox;
         private System.Windows.Forms.CheckBox rayTraceKeepCheckBox;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
